@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/book")
-public class hibernate {
+public class BookResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
