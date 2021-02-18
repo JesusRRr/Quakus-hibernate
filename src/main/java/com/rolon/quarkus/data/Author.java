@@ -11,7 +11,7 @@ public class Author {
     private Integer id;
     private String name;
     private String lastName;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER ,orphanRemoval = true, mappedBy = "author")
     private List<Book> books;
 
     public Integer getId() {
