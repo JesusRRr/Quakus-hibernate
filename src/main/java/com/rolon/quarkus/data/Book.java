@@ -1,9 +1,7 @@
 package com.rolon.quarkus.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -11,13 +9,15 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String author;
+    @ManyToOne
+    @JsonbTransient
+    private Author author;
     private Integer pages;
 
     public Book() {
     }
 
-    public Book(Integer id, String name, String author, Integer pages) {
+    public Book(Integer id, String name, Author author, Integer pages) {
         this.id = id;
         this.name = name;
         this.author = author;
@@ -40,11 +40,11 @@ public class Book {
         this.name = name;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
