@@ -1,7 +1,7 @@
 package com.rolon.quarkus.controller;
 
 import com.rolon.quarkus.data.Book;
-import com.rolon.quarkus.service.IBookService;
+import com.rolon.quarkus.service.book.IBookService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

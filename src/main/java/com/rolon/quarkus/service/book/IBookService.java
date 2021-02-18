@@ -1,4 +1,4 @@
-package com.rolon.quarkus.service;
+package com.rolon.quarkus.service.book;
 
 import com.rolon.quarkus.data.Book;
 import com.rolon.quarkus.repository.BookRepository;
