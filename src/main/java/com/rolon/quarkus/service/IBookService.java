@@ -9,7 +9,6 @@ public interface IBookService{
     public List<Book> findAll();
     public Book findByID(Integer id);
     public Book deleteByID(Integer id);
-    public Book updateByID(Integer id);
+    public Book updateByID(Integer id, Book book);
     public Book save(Book book);
-
 }
