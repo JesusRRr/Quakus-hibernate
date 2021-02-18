@@ -3,7 +3,9 @@ package com.rolon.quarkus.service;
 import com.rolon.quarkus.data.Book;
 import com.rolon.quarkus.repository.BookRepository;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
+
 
 public interface IBookService{
     public List<Book> findAll();
