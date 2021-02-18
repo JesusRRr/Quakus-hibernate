@@ -4,9 +4,8 @@ import com.rolon.quarkus.data.Book;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -17,8 +16,16 @@ public class BookResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-
-    public List<Book> hello() {
+    public List<Book> listBooks() {
         return entityManager.createQuery("Select b from Book b", Book.class).getResultList();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Book saveBook(Book book){
+        entityManager.persist(book);
+        return book;
     }
 }
