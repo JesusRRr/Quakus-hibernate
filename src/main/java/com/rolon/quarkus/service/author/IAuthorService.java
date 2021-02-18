@@ -1,4 +1,4 @@
-package com.rolon.quarkus.service;
+package com.rolon.quarkus.service.author;
 
 import com.rolon.quarkus.data.Author;
 

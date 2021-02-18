@@ -1,8 +1,7 @@
 package com.rolon.quarkus.controller;
 
 import com.rolon.quarkus.data.Author;
-import com.rolon.quarkus.service.AuthorService;
-import javafx.application.Application;
+import com.rolon.quarkus.service.author.AuthorService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
