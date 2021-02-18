@@ -3,9 +3,11 @@ package com.rolon.quarkus.service;
 import com.rolon.quarkus.data.Author;
 import com.rolon.quarkus.repository.AuthorRepository;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 
+@ApplicationScoped
 public class AuthorService implements IAuthorService{
     @Inject
     AuthorRepository authorRepository;
