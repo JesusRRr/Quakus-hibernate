@@ -25,4 +25,14 @@ public class AuthorController {
     public Author saveAuthor(Author author){
         return authorService.save(author);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{name}")
+    public Author getAuthorByName(@PathParam("name") String name){
+        System.out.println(name);
+       return authorService.findByName(name);
+    }
+
+
 }

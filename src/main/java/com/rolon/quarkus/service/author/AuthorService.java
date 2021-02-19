@@ -33,8 +33,13 @@ public class AuthorService implements IAuthorService{
         return save(author);
     }
 
+
     @Override
     public Author save(Author author) {
         return authorRepository.save(author);
+    }
+
+    public Author findByName(String name){
+        return authorRepository.findByName(name);
     }
 }

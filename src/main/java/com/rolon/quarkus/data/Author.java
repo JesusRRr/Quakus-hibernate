@@ -11,6 +11,7 @@ public class Author {
     private Integer id;
     private String name;
     private String lastName;
+    @Transient
     @OneToMany(cascade = CascadeType.ALL, fetch =FetchType.EAGER ,orphanRemoval = true, mappedBy = "author")
     private List<Book> books;
 
