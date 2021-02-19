@@ -2,6 +2,7 @@ package com.rolon.quarkus.service.author;
 
 import com.rolon.quarkus.data.Author;
 import com.rolon.quarkus.repository.AuthorRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -41,23 +42,10 @@ public class AuthorService implements IAuthorService{
         return authorRepository.save(author);
     }
 
-    public boolean authorExists(Author author){
-        Author authorFound = findByFullName(author.getName(),author.getLastName());
-        if(authorFound==null){
-            return false;
-        }else{
-            return true;
-        }
-    }
-    public Author findByFullName(String name, String lastName){
-        Author authorFoundByName = findByName(name);
-        Author authorFoundByLastName = findByLastName(lastName);
-        if(authorFoundByName.equals(authorFoundByLastName)){
-            return authorFoundByName;
-        }else{
-            return null;
-        }
-    }
+    /*public boolean authorExists(Author author){
+        authorRepository.findByFullName()
+    }*/
+
 
     public Author findByName(String name){
         return authorRepository.findByName(name);
@@ -67,12 +55,12 @@ public class AuthorService implements IAuthorService{
         return authorRepository.findByLastName(lastName);
     }
 
+    public Author findByFullName(String name,String lastName){
+        return authorRepository.findByLastnameAndFirstname(name, lastName);
+    }
+
     public Author secureSave(Author author){
-       if(authorExists(author)){
-           return null;
-       }else{
-           return findByFullName(author.getName(),author.getLastName());
-       }
+        return findByFullName(author.getName(),author.getLastName());
     }
 
 }
