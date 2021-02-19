@@ -10,7 +10,6 @@ public class Book {
     private Integer id;
     private String name;
     @ManyToOne
-    @JsonbTransient
     private Author author;
     private Integer pages;
 
