@@ -39,7 +39,14 @@ public class AuthorService implements IAuthorService{
         return authorRepository.save(author);
     }
 
-    public Author findByName(String name){
-        return authorRepository.findByLastName(name);
+    public Author findByFullName(String name, String lastName){
+        Author authorFound = authorRepository.findByName(name);
+        String authorName = authorFound.getName();
+        String authorLastName = authorFound.getLastName();
+        if(authorName.equals(name) && authorLastName.equals(lastName)){
+            return authorFound;
+        }else{
+            return null;
+        }
     }
 }
