@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AuthorRepository extends CrudRepository<Author, Integer> {
     public Author findByName(String name);
+    public Author findByLastName(String lastName);
 }

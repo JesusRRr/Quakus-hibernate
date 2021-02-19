@@ -40,6 +40,6 @@ public class AuthorService implements IAuthorService{
     }
 
     public Author findByName(String name){
-        return authorRepository.findByName(name);
+        return authorRepository.findByLastName(name);
     }
 }
