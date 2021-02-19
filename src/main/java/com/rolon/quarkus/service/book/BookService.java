@@ -42,7 +42,7 @@ public class BookService implements IBookService{
 
     @Override
     public Book save(Book book) {
-        authorService.save(book.getAuthor());
+        Author author = authorService.save(book.getAuthor());
         return bookRepository.save(book);
     }
 }

@@ -6,6 +6,7 @@ import com.rolon.quarkus.repository.AuthorRepository;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Locale;
 
 @ApplicationScoped
 public class AuthorService implements IAuthorService{
@@ -40,23 +41,38 @@ public class AuthorService implements IAuthorService{
         return authorRepository.save(author);
     }
 
-    public Author secureSave(Author author){
-        if(findByFullName(author.getName(),author.getLastName())==null){
-            save(author);
-            return null;
+    public boolean authorExists(Author author){
+        Author authorFound = findByFullName(author.getName(),author.getLastName());
+        if(authorFound==null){
+            return false;
         }else{
-            return author;
+            return true;
+        }
+    }
+    public Author findByFullName(String name, String lastName){
+        Author authorFoundByName = findByName(name);
+        Author authorFoundByLastName = findByLastName(lastName);
+        if(authorFoundByName.equals(authorFoundByLastName)){
+            return authorFoundByName;
+        }else{
+            return null;
         }
     }
 
-    public Author findByFullName(String name, String lastName){
-        Author authorFound = authorRepository.findByName(name);
-        String authorName = authorFound.getName();
-        String authorLastName = authorFound.getLastName();
-        if(authorName.equals(name) && authorLastName.equals(lastName)){
-            return authorFound;
-        }else{
-            return null;
-        }
+    public Author findByName(String name){
+        return authorRepository.findByName(name);
     }
+
+    public Author findByLastName(String lastName){
+        return authorRepository.findByLastName(lastName);
+    }
+
+    public Author secureSave(Author author){
+       if(authorExists(author)){
+           return null;
+       }else{
+           return findByFullName(author.getName(),author.getLastName());
+       }
+    }
+
 }

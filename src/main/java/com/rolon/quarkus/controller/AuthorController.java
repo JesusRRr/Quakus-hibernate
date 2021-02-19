@@ -23,7 +23,7 @@ public class AuthorController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Author saveAuthor(Author author){
-        return authorService.save(author);
+        return authorService.secureSave(author);
     }
 
     @GET
