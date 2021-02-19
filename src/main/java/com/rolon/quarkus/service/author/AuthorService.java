@@ -36,7 +36,17 @@ public class AuthorService implements IAuthorService{
 
     @Override
     public Author save(Author author) {
+
         return authorRepository.save(author);
+    }
+
+    public Author secureSave(Author author){
+        if(findByFullName(author.getName(),author.getLastName())==null){
+            save(author);
+            return null;
+        }else{
+            return author;
+        }
     }
 
     public Author findByFullName(String name, String lastName){
