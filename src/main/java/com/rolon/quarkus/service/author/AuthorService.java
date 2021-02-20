@@ -38,13 +38,8 @@ public class AuthorService implements IAuthorService{
 
     @Override
     public Author save(Author author) {
-
-        return authorRepository.save(author);
+       return authorRepository.save(author);
     }
-
-    /*public boolean authorExists(Author author){
-        authorRepository.findByFullName()
-    }*/
 
 
     public Author findByName(String name){
@@ -59,8 +54,8 @@ public class AuthorService implements IAuthorService{
         return authorRepository.findByLastnameAndFirstname(name, lastName);
     }
 
-    public Author secureSave(Author author){
-        return findByFullName(author.getName(),author.getLastName());
+    public Author findByFullName(Author author){
+        return authorRepository.findByLastnameAndFirstname(author.getName(), author.getLastName());
     }
 
 }

@@ -42,7 +42,13 @@ public class BookService implements IBookService{
 
     @Override
     public Book save(Book book) {
-        Author author = authorService.save(book.getAuthor());
+        Author authorFound = authorService.findByFullName(book.getAuthor());
+        System.out.println(authorFound);
+        if(authorFound!=null){
+            book.setAuthor(authorFound);
+        }else{
+            authorService.save(book.getAuthor());
+        }
         return bookRepository.save(book);
     }
 }
