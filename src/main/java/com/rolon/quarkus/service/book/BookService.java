@@ -1,7 +1,10 @@
 package com.rolon.quarkus.service.book;
 
+import com.rolon.quarkus.data.Author;
 import com.rolon.quarkus.data.Book;
+import com.rolon.quarkus.repository.AuthorRepository;
 import com.rolon.quarkus.repository.BookRepository;
+import com.rolon.quarkus.service.author.AuthorService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -11,6 +14,9 @@ import java.util.List;
 public class BookService implements IBookService{
     @Inject
     BookRepository bookRepository;
+
+    @Inject
+    AuthorService authorService;
 
     @Override
     public List<Book> findAll() {
@@ -36,6 +42,7 @@ public class BookService implements IBookService{
 
     @Override
     public Book save(Book book) {
+        Author author = authorService.save(book.getAuthor());
         return bookRepository.save(book);
     }
 }
